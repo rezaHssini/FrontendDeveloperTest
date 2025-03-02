@@ -44,8 +44,8 @@ const error_to_handle_in_login = 'auth/multi-factor-auth-required'
 
 export const TOKEN_KEY = 'SITE_TOKENS'
 const config = {
-  apiKey: 'AIzaSyAI2CDFzsWKmHFDi-8T7w3j20LHaf-FDZQ',
-  authDomain: 'auth.clod.io',
+  apiKey: 'TEST',
+  authDomain: 'TEST',
 }
 
 export enum AuthErrorEnum {
