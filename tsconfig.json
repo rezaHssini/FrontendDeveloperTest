@@ -13,7 +13,6 @@
   ],
   "compilerOptions": {
     "module": "NodeNext",
-    "verbatimModuleSyntax": false,
-    "experimentalDecorators": false
+    "verbatimModuleSyntax": false
   }
 }

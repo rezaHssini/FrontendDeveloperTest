@@ -8,13 +8,13 @@
       >
         <div class="flex flex-col">
           <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Users</dt>
-          <dd class="mt-3">
+          <dd class="mt-2">
             <div class="flex items-baseline text-2xl font-semibold text-gray-900 dark:text-white">
               <template v-if="isLoading">
                 <div class="h-8 bg-gray-200 dark:bg-gray-700/50 rounded w-24 animate-pulse"></div>
               </template>
               <template v-else>
-                <span v-html="formatNumber(stats?.totalUsersCount) + expensiveCalculation()" />
+                {{ formatNumber(stats?.totalUsersCount ?? 0) }}
               </template>
             </div>
           </dd>
@@ -482,9 +482,6 @@ const isLoading = ref(true)
 const stats = ref<GetSystemStatDto>()
 const store = useStatStore()
 
-const screenTime = ref(1)
-const timer = ref(null)
-
 const monthlyTokens = computed(() => {
   if (!stats.value?.lastMonthRequestsHistory) return 0
 
@@ -753,24 +750,11 @@ const pieChartOptions = computed(() => ({
   },
 }))
 
-function expensiveCalculation(): number {
-  let sum = 0
-  for (let i = 0; i < 1e6; i++) {
-    sum += Math.sqrt(i) * Math.log(i + 1)
-  }
-
-  const end = performance.now()
-}
-
 onMounted(async () => {
   try {
     stats.value = await store.getSystemStat()
   } finally {
     isLoading.value = false
   }
-
-  timer.value = setInterval(() => {
-    screenTime.value++
-  }, 1000)
 })
 </script>
